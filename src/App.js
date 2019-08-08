@@ -10,6 +10,22 @@ class App extends Component {
     text: sampleText
   };
 
+  componentDidMount() {
+    // console.log("Je suis monté.");
+    const text = localStorage.getItem("text");
+    if (text) {
+      this.setState({ text });
+    } else {
+      this.setState({ text: sampleText });
+    }
+  }
+
+  componentDidUpdate() {
+    // console.log("Je suis mis à jour.");
+    const { text } = this.state;
+    localStorage.setItem("text", text);
+  }
+
   handleChange = event => {
     const text = event.target.value;
     this.setState({ text });
